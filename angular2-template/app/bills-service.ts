@@ -1,16 +1,18 @@
-import {Injectable} from 'angular2/core';
-
-export class Bill {
-	constructor(
-		public date: Date,
-		public amount: number,
-		public title: string
-	){}
-}
+import {Injectable, OnInit} from 'angular2/core';
+import {Bill} from './models/bills';
+import {Bills} from './mocks/bills-mock';
 
 @Injectable()
-export class BillsService {
-	getBills() { return billsPromise}
+export class BillsService implements OnInit {
+    private _bills: Bill[],
+        
+    ngOnInit() {
+        this._bills = Bills;
+    }
+    
+	getBills() { 
+        return Promise.resolve(this._bills); 
+    }
 	
 	addBill(bill: Bill){
 		this.getBills().then(function(bills){
@@ -18,9 +20,3 @@ export class BillsService {
 		})
 	}
 }
-
-var BILLS = [
-	new Bill(new Date(), 22.5, "Lunch")
-]
-
-var billsPromise = Promise.resolve(BILLS)

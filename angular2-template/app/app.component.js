@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './bills-service', './add-bill-component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,12 +8,21 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, router_1, bills_service_1, add_bill_component_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (bills_service_1_1) {
+                bills_service_1 = bills_service_1_1;
+            },
+            function (add_bill_component_1_1) {
+                add_bill_component_1 = add_bill_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -22,8 +31,13 @@ System.register(['angular2/core'], function(exports_1) {
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: '<h1>My First Angular 2 App 23</h1>'
-                    }), 
+                        template: "\n    \t<h1 class=\"title\">Component Router</h1>\n    \t<nav>\n    \t  <a [routerLink]=\"['AddBill']\">AddBill</a>\n    \t</nav>\n    \t<router-outlet></router-outlet>\n  \t",
+                        providers: [bills_service_1.BillsService],
+                        directives: [router_1.ROUTER_DIRECTIVES]
+                    }),
+                    router_1.RouteConfig([
+                        { path: '/add-bill', name: 'AddBill', component: add_bill_component_1.AddBillComponent }
+                    ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;
